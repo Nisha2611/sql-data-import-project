@@ -190,9 +190,7 @@ Microsoft Word (Project Report)
 
 
 
-**📁 Files in this Repo**
-
-📁 Project Files Overview
+**📁 Project Files Overview**
 
 File/Folder Name	                               Description
 SQL Data Import Project Report.docx	 Comprehensive project documentation including objectives, methods, errors, and                                               resolutions.
