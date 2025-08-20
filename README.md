@@ -195,7 +195,8 @@ Microsoft Word (Project Report)
 File/Folder Name	                               Description
 SQL Data Import Project Report.docx	 Comprehensive project documentation including objectives, methods, errors, and                                               resolutions.
 README.md	                         Clean and concise GitHub-facing project summary with highlights and usage instructions.
-SQL_Data_Import_Project.sql	         Full SQL script for both import methods — includes schema creation, data type fixes, and NULL handling.
+SQL_Data_Import_Project.sql	         Full SQL script for both import methods — includes schema creation, data type fixes,                                         and NULL handling.
+Retail_Sales.csv                     Data for reference.
 
 
 👩‍💻 Author
