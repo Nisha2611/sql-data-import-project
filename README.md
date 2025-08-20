@@ -192,15 +192,25 @@ Microsoft Word (Project Report)
 
 **📁 Files in this Repo**
 
-File	Description
-SQL Data Import Project Report.docx	Full project report with SQL code and explanation
-README.md	Clean GitHub documentation
-.sql scripts	Separated SQL commands for table creation & data fix
-📌 Author
+📁 Project Files Overview
 
+File/Folder Name	                               Description
+SQL Data Import Project Report.docx	 Comprehensive project documentation including objectives, methods, errors, and                                               resolutions.
+README.md	                         Clean and concise GitHub-facing project summary with highlights and usage instructions.
+SQL_Data_Import_Project.sql	         Full SQL script for both import methods — includes schema creation, data type fixes, and NULL handling.
+
+
+👩‍💻 Author
 
 Nisha2611
+Aspiring Data Analyst | Passionate about SQL & Data Cleaning
+LinkedIn
+🔗 www.linkedin.com/in/
+nisha-khatoon-a866b633b
+
 🔗 GitHub Profile
+https://github.com/Nisha2611
+
 
 
 **💬 Feedback**
