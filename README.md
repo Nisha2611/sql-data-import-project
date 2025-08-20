@@ -40,9 +40,13 @@ CREATE TABLE dbo.Retail_sales (
     quantity            INT          NULL,
     price_per_unit      FLOAT        NULL,
     cogs                FLOAT        NULL,
+    total_sale          FLOAT        NULL
+);
 
-🧰 Method 1: Direct Import into Retail_sales
-❗ Issues Faced:
+
+****🧰 Method 1: Direct Import into Retail_sales
+**
+**❗ Issues Faced:****
 
 Date/Time columns imported as VARCHAR
 
@@ -53,7 +57,8 @@ Couldn’t rename or alter columns easily due to:
 Msg 15248, Level 11, State 1
 Either the parameter @objname is ambiguous or the claimed @objtype (COLUMN) is wrong.
 
-✅ Fixes Applied:
+
+**✅ Fixes Applied:**
 
 -- Add correct-typed columns
 ALTER TABLE dbo.Retail_sales
@@ -72,6 +77,7 @@ ALTER TABLE dbo.Retail_sales DROP COLUMN sales_date, sales_time;
 EXEC sp_rename 'dbo.Retail_sales.sales_date_new', 'sales_date', 'COLUMN';
 EXEC sp_rename 'dbo.Retail_sales.sales_time_new', 'sales_time', 'COLUMN';
 
+
 🔄 Handling NULLs:
 
 UPDATE dbo.Retail_sales
@@ -83,8 +89,10 @@ SET customer_id = NULLIF(customer_id, 0),
     total_sale = NULLIF(total_sale, 0)
 WHERE customer_id = 0 OR age = 0 OR quantity = 0 OR price_per_unit = 0 OR cogs = 0 OR total_sale = 0;
 
+
+
 ✅ Method 2 (Recommended): Using a Staging Table
-Step 1: Create Staging Table
+**Step 1: Create Staging Table**
 
 CREATE TABLE dbo.Retail_sales_staging (
     transactions_id     VARCHAR(100),
@@ -100,13 +108,15 @@ CREATE TABLE dbo.Retail_sales_staging (
     total_sale          VARCHAR(100)
 );
 
-Step 2: Import CSV → Retail_sales_staging
+
+**Step 2: Import CSV → Retail_sales_staging**
 
 No data type conflicts
 
 Empty cells are preserved as '' (not 0)
 
-Step 3: Clean Insert into Final Table
+
+**Step 3: Clean Insert into Final Table**
 
 INSERT INTO dbo.Retail_sales (
     transactions_id,
@@ -135,11 +145,14 @@ SELECT
     TRY_CAST(NULLIF(total_sale, '') AS FLOAT)
 FROM dbo.Retail_sales_staging;
 
-Step 4: Clean Up
+
+**Step 4: Clean Up**
 
 TRUNCATE TABLE dbo.Retail_sales_staging;
 
-🔍 Error Summary
+
+
+**🔍 Error Summary**
 
 | Error                       | Cause                       | Fix                              |
 | --------------------------- | --------------------------- | -------------------------------- |
@@ -149,7 +162,9 @@ TRUNCATE TABLE dbo.Retail_sales_staging;
 | Append rows option disabled | Schema mismatch             | Use staging to reformat          |
 | Import failed for numeric   | Wrong datatype              | Use `TRY_CAST()`                 |
 
-🏁 Final Recommendation
+
+
+**🏁 Final Recommendation**
 
 Always use a staging table when importing raw data:
 
@@ -161,7 +176,9 @@ Preserves NULL values
 
 Easier to debug & scale
 
-🛠 Tools Used
+
+
+**🛠 Tools Used**
 
 SQL Server Management Studio (SSMS)
 
@@ -171,19 +188,23 @@ Git & GitHub
 
 Microsoft Word (Project Report)
 
-📁 Files in this Repo
+
+
+**📁 Files in this Repo**
+
 File	Description
 SQL Data Import Project Report.docx	Full project report with SQL code and explanation
 README.md	Clean GitHub documentation
 .sql scripts	Separated SQL commands for table creation & data fix
 📌 Author
 
+
 Nisha2611
 🔗 GitHub Profile
 
-💬 Feedback
+
+**💬 Feedback**
 
 Have suggestions? Open an issue or drop a ⭐ if you found it helpful!
 
-    total_sale          FLOAT        NULL
-);
+
