@@ -42,8 +42,8 @@ CREATE TABLE dbo.Retail_sales (
     cogs                FLOAT        NULL,
     total_sale          FLOAT        NULL
 );
-'''
 
+```
 ****🧰 Method 1: Direct Import into Retail_sales
 **
 **❗ Issues Faced:****
@@ -59,7 +59,7 @@ Either the parameter @objname is ambiguous or the claimed @objtype (COLUMN) is w
 
 
 **✅ Fixes Applied:**
-
+```sql
 -- Add correct-typed columns
 ALTER TABLE dbo.Retail_sales
 ADD sales_date_new DATE NULL,
@@ -77,9 +77,9 @@ ALTER TABLE dbo.Retail_sales DROP COLUMN sales_date, sales_time;
 EXEC sp_rename 'dbo.Retail_sales.sales_date_new', 'sales_date', 'COLUMN';
 EXEC sp_rename 'dbo.Retail_sales.sales_time_new', 'sales_time', 'COLUMN';
 
-
+```
 🔄 Handling NULLs:
-
+```sql
 UPDATE dbo.Retail_sales
 SET customer_id = NULLIF(customer_id, 0),
     age = NULLIF(age, 0),
@@ -89,11 +89,12 @@ SET customer_id = NULLIF(customer_id, 0),
     total_sale = NULLIF(total_sale, 0)
 WHERE customer_id = 0 OR age = 0 OR quantity = 0 OR price_per_unit = 0 OR cogs = 0 OR total_sale = 0;
 
-
+```
 
 ✅ Method 2 (Recommended): Using a Staging Table
-**Step 1: Create Staging Table**
 
+**Step 1: Create Staging Table**
+```sql
 CREATE TABLE dbo.Retail_sales_staging (
     transactions_id     VARCHAR(100),
     sales_date          VARCHAR(100),
@@ -107,7 +108,7 @@ CREATE TABLE dbo.Retail_sales_staging (
     cogs                VARCHAR(100),
     total_sale          VARCHAR(100)
 );
-
+```
 
 **Step 2: Import CSV → Retail_sales_staging**
 
@@ -117,7 +118,7 @@ Empty cells are preserved as '' (not 0)
 
 
 **Step 3: Clean Insert into Final Table**
-
+```sql
 INSERT INTO dbo.Retail_sales (
     transactions_id,
     sales_date,
@@ -144,13 +145,13 @@ SELECT
     TRY_CAST(NULLIF(cogs, '') AS FLOAT),
     TRY_CAST(NULLIF(total_sale, '') AS FLOAT)
 FROM dbo.Retail_sales_staging;
-
+```
 
 **Step 4: Clean Up**
-
+```sql
 TRUNCATE TABLE dbo.Retail_sales_staging;
 
-
+```
 
 **🔍 Error Summary**
 
