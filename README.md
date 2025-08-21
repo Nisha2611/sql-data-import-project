@@ -24,7 +24,7 @@ The original dataset includes:
 - `customer_id`, `gender`, `age`: Customer info
 - `category`, `quantity`, `price_per_unit`, `cogs`, `total_sale`: Transaction details
 
----
+'''
 
 ## 🧪 Final Table Schema
 
@@ -42,7 +42,7 @@ CREATE TABLE dbo.Retail_sales (
     cogs                FLOAT        NULL,
     total_sale          FLOAT        NULL
 );
-
+'''
 
 ****🧰 Method 1: Direct Import into Retail_sales
 **
