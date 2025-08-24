@@ -213,8 +213,7 @@ Retail_Sales.csv                     Data for reference.
 Nisha2611
 Aspiring Data Analyst | Passionate about SQL & Data Cleaning
 LinkedIn
-🔗 www.linkedin.com/in/
-nisha-khatoon-a866b633b
+🔗 www.linkedin.com/in/nisha-khatoon
 
 🔗 GitHub Profile
 https://github.com/Nisha2611
